@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(98, 98, 98);
+    background-color: rgba(149, 109, 161, 0.651);
 }
 
 h2, h3{
@@ -13,13 +13,13 @@ h2, h3{
 #field table {
     border-collapse: collapse;
     font-size: 150%;
-    font-family: san-serif;
+    font-family: georgia;
     font-weight: bold;
     display: inline-block;
 }
 
 #field table td {
-    background-color: rgb(195, 195, 195);
+    background-color: rgba(189, 223, 228, 0.856);
     width: 30px;
     min-width: 30px;
     height: 30px;
@@ -30,7 +30,7 @@ h2, h3{
 button {
     width: 100px;
     height: 30px;
-    background-color:rgb(195, 195, 195);
+    background-color:rgba(34, 97, 192, 0.877);;
     color: black;
     font-weight: bolder;
     border-radius: 20px 20px 20px 20px;

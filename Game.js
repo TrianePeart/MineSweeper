@@ -1,86 +1,11 @@
-const generateGrid = document.querySelector("main");
-for (let i = 0; i < 100; i++) {
-  const div = document.createElement("div");
-  div.classList.add("cell");
-  main.append(div);
-}
-
-let grid = document.getElementById("grid");
-let testMode = false; //Turn to true to see where the mines are
-generateGrid();
-
-function addMines() {
-  //Add mines randomly
-  for (let i=0; i<20; i++) {
-    let row = Math.floor(Math.random() * 10);
-    let col = Math.floor(Math.random() * 10);
-    let cell = grid.rows[row].cells[col];
-    cell.setAttribute("data-mine","true");
-    if (testMode) cell.innerHTML="X";
-  }
-}
-
-function revealMines() {
-    //Highlight all mines in red
-    for (let i=0; i<10; i++) {
-      for(let j=0; j<10; j++) {
-        let cell = grid.rows[i].cells[j];
-        if (cell.getAttribute("data-mine")=="true") cell.className="mine";
-      }
-    }
-}
-
-function checkLevelCompletion() {
-  let levelComplete = true;
-    for (let i=0; i<10; i++) {
-      for(let j=0; j<10; j++) {
-        if ((grid.rows[i].cells[j].getAttribute("data-mine")=="false") && (grid.rows[i].cells[j].innerHTML=="")) levelComplete=false;
-      }
-  }
-  if (levelComplete) {
-    alert("You Win!");
-    revealMines();
-  }
-}
-
-function clickCell(cell) {
-  //Check if the end-user clicked on a mine
-  if (cell.getAttribute("data-mine")=="true") {
-    revealMines();
-    alert("Game Over");
-  } else {
-    cell.className="clicked";
-    //Count and display the number of adjacent mines
-    let mineCount=0;
-    let cellRow = cell.parentNode.rowIndex;
-    let cellCol = cell.cellIndex;
-    //alert(cellRow + " " + cellCol);
-    for (let i=Math.max(cellRow-1,0); i<=Math.min(cellRow+1,9); i++) {
-      for(let j=Math.max(cellCol-1,0); j<=Math.min(cellCol+1,9); j++) {
-        if (grid.rows[i].cells[j].getAttribute("data-mine")==="true") mineCount++;
-      }
-    }
-    cell.innerHTML=mineCount;
-    if (mineCount===0) { 
-      //Reveal all adjacent cells as they do not have a mine
-      for (let i=Math.max(cellRow-1,0); i<=Math.min(cellRow+1,9); i++) {
-        for(let j=Math.max(cellCol-1,0); j<=Math.min(cellCol+1,9); j++) {
-          //Recursive Call
-          if (grid.rows[i].cells[j].innerHTML=="") clickCell(grid.rows[i].cells[j]);
-        }
-      }
-    }
-    checkLevelCompletion();
-  }
-}
 
 let components = {
-    num_of_rows : 12,
-    num_of_cols : 24,
-    num_of_bombs : 55,
+    num_of_rows : 15,
+    num_of_cols : 25,
+    num_of_bombs : 50,
     bomb : '💣',
     alive : true,
-    colors : {1: 'blue', 2: 'green', 3: 'red', 4: 'purple', 5: 'maroon', 6: 'turquoise', 7: 'black', 8: 'grey'}
+    colors : {1: 'maroon', 2: 'purple', 3: 'blue', 4: 'turquoise', 5: 'yellow', 6: 'green', 7: 'black', 8: 'grey'}
 }
 
 function startGame() {
@@ -99,20 +24,20 @@ function placeBombs() {
 
 function placeSingleBomb(bombs) {
 
-    let nrow, ncol, row, col;
-    nrow = Math.floor(Math.random() * components.num_of_rows);
-    ncol = Math.floor(Math.random() * components.num_of_cols);
-    row = bombs[nrow];
+    let numrow, numcol, row, col;
+    numrow = Math.floor(Math.random() * components.num_of_rows);
+    numcol = Math.floor(Math.random() * components.num_of_cols);
+    row = bombs[numrow];
     
     if (!row) {
         row = [];
-        bombs[nrow] = row;
+        bombs[numrow] = row;
     }
     
-    col = row[ncol];
+    col = row[numcol];
     
     if (!col) {
-        row[ncol] = true;
+        row[numcol] = true;
         return
     } 
     else {
