@@ -12,4 +12,4 @@ I also had help from my classmates [Benny Zheng](https://github.com/BennyZ3) and
 
 ## The Inspired 
 
-![image](https://user-images.githubusercontent.com/87388431/134741876-03807a3a-7a26-4937-8f82-a04d5c50a940.png))
+![image](https://user-images.githubusercontent.com/87388431/134741876-03807a3a-7a26-4937-8f82-a04d5c50a940.png)
